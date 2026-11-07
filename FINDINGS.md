@@ -1,7 +1,7 @@
 # Remediation plan — siscdacc.web.app
 
 **Audit date:** 2026-11-07  
-**Target:** https://siscdacc.web.app/  
+**Target:** demo-web.com/  
 **Source of truth:** `audit-report/report.html` / `report.json`  
 **Result:** 2 critical, 8 high, 6 medium, 7 low, 8 info — score 0/100, grade F
 
@@ -293,7 +293,7 @@ Start with report-only; do not deploy a strict `script-src` blind.
 The Firebase web API key is not a secret, but it should be restricted:
 
 - Google Cloud Console → APIs & Services → Credentials → the browser key.
-- Application restrictions: HTTP referrers for `https://siscdacc.web.app/*`
+- Application restrictions: HTTP referrers for `demo-web.com/*`
   (and localhost only during development).
 - API restrictions: only the APIs the app uses (Identity Toolkit, Firestore,
   Firebase Installations, etc.).
@@ -427,7 +427,7 @@ Run after each batch of fixes:
 
 ```bash
 # 1. Headers
-curl -sI https://siscdacc.web.app/ | grep -iE \
+curl -sI demo-web.com/ | grep -iE \
   'content-security-policy|x-frame-options|x-content-type-options|referrer-policy|permissions-policy|cross-origin-opener-policy|cache-control'
 
 # 2. Sensitive Firestore paths (expect 401/403)
@@ -438,11 +438,11 @@ for p in parentMarks studentPins parentComm teacherDirectory; do
 done
 
 # 3. Full audit
-.venv/bin/python site_audit.py https://siscdacc.web.app/ \
+.venv/bin/python site_audit.py demo-web.com/ \
   --firebase-probe --fail-on high --out audit-report
 
 # 4. Browser-only accessibility/performance pass
-.venv/bin/python site_audit.py https://siscdacc.web.app/ --headed --fail-on none
+.venv/bin/python site_audit.py demo-web.com/ --headed --fail-on none
 ```
 
 **Definition of done for P0/P1:**
@@ -491,7 +491,7 @@ audit and Lighthouse; document accepted risks.
   rules, Realtime Database rules, Cloud Functions, payment flows, or authenticated
   pages.
 - To audit authenticated pages, use:
-  `.venv/bin/python site_audit.py https://siscdacc.web.app/ --save-auth auth.json`
+  `.venv/bin/python site_audit.py demo-web.com/ --save-auth auth.json`
   then rerun with `--storage-state auth.json`.
 - `auth.json` contains live session material. Keep it private and delete it when done.
 - Re-run the audit after fixes; save the old report for comparison.

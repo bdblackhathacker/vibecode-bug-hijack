@@ -1,0 +1,750 @@
+{
+  "tool": {
+    "name": "site_audit.py",
+    "version": "1.1.0",
+    "mode": "non-destructive QA/security audit"
+  },
+  "target": "https://siscdacc.web.app/",
+  "started_at": "2026-11-07T08:51:28+00:00",
+  "finished_at": "2026-11-07T08:52:19+00:00",
+  "summary": {
+    "score": 0,
+    "grade": "F",
+    "counts": {
+      "critical": 2,
+      "high": 8,
+      "medium": 6,
+      "low": 7,
+      "info": 8
+    },
+    "total": 31,
+    "duration_seconds": 51.7
+  },
+  "http": {
+    "requested_url": "https://siscdacc.web.app/",
+    "final_url": "https://siscdacc.web.app/",
+    "status": 200,
+    "reason": "OK",
+    "elapsed_ms": 1790,
+    "body_bytes": 1912534,
+    "content_type": "text/html; charset=utf-8",
+    "content_encoding": "gzip",
+    "cache_control": "no-cache, no-store, must-revalidate",
+    "redirects": [],
+    "headers": {
+      "Connection": "keep-alive",
+      "Cache-Control": "no-cache, no-store, must-revalidate",
+      "Content-Encoding": "gzip",
+      "Content-Type": "text/html; charset=utf-8",
+      "Etag": "\"e802ac831917689fae38b39e9de5df8b62b833152b9cbf663970a95073330f6d\"",
+      "Last-Modified": "Sat, 07 Nov 2026 06:07:35 GMT",
+      "Strict-Transport-Security": "max-age=31556926; includeSubDomains; preload",
+      "Accept-Ranges": "bytes",
+      "Date": "Sat, 07 Nov 2026 08:51:29 GMT",
+      "X-Served-By": "cache-ccu830051-CCU",
+      "X-Cache": "MISS",
+      "X-Cache-Hits": "0",
+      "X-Timer": "S1794041489.498953,VS0,VE161",
+      "Vary": "x-fh-requested-host, accept-encoding",
+      "alt-svc": "h3=\":443\";ma=86400,h3-29=\":443\";ma=86400,h3-27=\":443\";ma=86400",
+      "transfer-encoding": "chunked"
+    }
+  },
+  "tls": {
+    "issuer": "Google Trust Services",
+    "subject": "web.app",
+    "expires": "Jan 25 22:53:04 2027 GMT",
+    "days_remaining": 79.6,
+    "san_count": 2,
+    "san_sample": [
+      "web.app",
+      "*.web.app"
+    ]
+  },
+  "html": {
+    "bytes": 1912534,
+    "inline_js_bytes": 1600207,
+    "inline_css_bytes": 142249,
+    "scripts": 6,
+    "external_scripts": 3,
+    "stylesheets": 0,
+    "images": 1,
+    "forms": 11,
+    "inputs": 260,
+    "inline_event_handlers": 379
+  },
+  "manifest": {
+    "id": "/",
+    "name": "Scholars International School & College",
+    "short_name": "SISCD",
+    "description": "Scholars International School & College — Accounts, Teachers & Students Progress Portal",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "any",
+    "background_color": "#ffffff",
+    "theme_color": "#1e3a8a",
+    "categories": [
+      "education",
+      "finance",
+      "productivity"
+    ],
+    "icons": [
+      {
+        "src": "icon-192.png?v=20261104",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "icon-512.png?v=20261104",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "icon-maskable-512.png?v=20261104",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "maskable"
+      }
+    ]
+  },
+  "browser": {
+    "main": {
+      "title": "Scholars International School & College — Accounts & Class Test Marks",
+      "url": "https://siscdacc.web.app/",
+      "readyState": "complete",
+      "bodyTextLen": 482,
+      "nodes": 2217,
+      "scripts": 6,
+      "stylesheets": 1,
+      "images": 3,
+      "forms": 11,
+      "inputs": 267,
+      "buttonsCount": 284,
+      "linksCount": 0,
+      "dialogsVisible": 2,
+      "headings": [
+        "🔐 Accounts & Reports Login"
+      ],
+      "buttons": [
+        "📲 Install SISCD App",
+        "🔗 Copy App Link",
+        "📤 Share Install Msg",
+        "💼 Accounts",
+        "📝 Teachers",
+        "🎓 Students",
+        "☁️ Email Login",
+        "👥 Collector PIN",
+        "👔 Director PIN",
+        "👁️",
+        "☁️ Login Online",
+        "Forgot password?"
+      ],
+      "localStorageKeys": [
+        "siscd_acc_login_mode"
+      ],
+      "sessionStorageKeys": [],
+      "hasUndefined": false,
+      "hasNaN": false,
+      "hasObjectObject": false,
+      "scrollWidth": 1440,
+      "innerWidth": 1440,
+      "scrollHeight": 900,
+      "innerHeight": 900,
+      "lang": "en",
+      "metaRobots": "noindex, nofollow, noarchive, nosnippet",
+      "viewportMeta": "width=device-width, initial-scale=1.0",
+      "nav": {
+        "ttfb": 975,
+        "domContentLoaded": 4267,
+        "load": 4418,
+        "duration": 4418,
+        "transferSize": 331024,
+        "encodedBodySize": 330724
+      },
+      "resourceSummary": {
+        "count": 7,
+        "transferBytes": 25703,
+        "byType": {
+          "img": 1,
+          "script": 3,
+          "other": 1,
+          "fetch": 2
+        }
+      },
+      "jsHeap": 5817148,
+      "link_count": 0
+    },
+    "axe_version": "4.10.2",
+    "viewports": {
+      "desktop": {
+        "viewport": 1440,
+        "scrollWidth": 1440,
+        "overflow": 0,
+        "offenders": []
+      },
+      "tablet": {
+        "viewport": 768,
+        "scrollWidth": 768,
+        "overflow": 0,
+        "offenders": []
+      },
+      "mobile": {
+        "viewport": 390,
+        "scrollWidth": 390,
+        "overflow": 0,
+        "offenders": []
+      }
+    },
+    "tap_targets": {
+      "checked": 14,
+      "count": 0,
+      "samples": []
+    },
+    "screenshots": [
+      "screenshot-mobile.png"
+    ],
+    "links_checked": 8,
+    "firebase_probe": [
+      {
+        "path": "schools/main/public/parentMarks",
+        "label": "student marks / parent portal data",
+        "status": 200,
+        "accessible": true,
+        "field_names": [
+          "updatedAt"
+        ],
+        "document_count": 0
+      },
+      {
+        "path": "schools/main/public/studentPins",
+        "label": "student PIN registry",
+        "status": 200,
+        "accessible": true,
+        "field_names": [
+          "updatedAt"
+        ],
+        "document_count": 0
+      },
+      {
+        "path": "schools/main/public/teacherDirectory",
+        "label": "teacher directory",
+        "status": 200,
+        "accessible": true,
+        "field_names": [
+          "updatedAt"
+        ],
+        "document_count": 0
+      },
+      {
+        "path": "schools/main/public/parentComm",
+        "label": "parent communications",
+        "status": 200,
+        "accessible": true,
+        "field_names": [
+          "updatedAt"
+        ],
+        "document_count": 0
+      },
+      {
+        "path": "schools/main/app/state",
+        "label": "main school state",
+        "status": 403,
+        "accessible": false,
+        "field_names": [],
+        "document_count": 0,
+        "error_status": "PERMISSION_DENIED"
+      },
+      {
+        "path": "schools/main/app/marks",
+        "label": "class-test marks",
+        "status": 403,
+        "accessible": false,
+        "field_names": [],
+        "document_count": 0,
+        "error_status": "PERMISSION_DENIED"
+      },
+      {
+        "path": "appUsers",
+        "label": "user/role records (collection)",
+        "status": 403,
+        "accessible": false,
+        "field_names": [],
+        "document_count": 0,
+        "error_status": "PERMISSION_DENIED"
+      }
+    ]
+  },
+  "firebase": [
+    {
+      "path": "schools/main/public/parentMarks",
+      "label": "student marks / parent portal data",
+      "status": 200,
+      "accessible": true,
+      "field_names": [
+        "updatedAt"
+      ],
+      "document_count": 0
+    },
+    {
+      "path": "schools/main/public/studentPins",
+      "label": "student PIN registry",
+      "status": 200,
+      "accessible": true,
+      "field_names": [
+        "updatedAt"
+      ],
+      "document_count": 0
+    },
+    {
+      "path": "schools/main/public/teacherDirectory",
+      "label": "teacher directory",
+      "status": 200,
+      "accessible": true,
+      "field_names": [
+        "updatedAt"
+      ],
+      "document_count": 0
+    },
+    {
+      "path": "schools/main/public/parentComm",
+      "label": "parent communications",
+      "status": 200,
+      "accessible": true,
+      "field_names": [
+        "updatedAt"
+      ],
+      "document_count": 0
+    },
+    {
+      "path": "schools/main/app/state",
+      "label": "main school state",
+      "status": 403,
+      "accessible": false,
+      "field_names": [],
+      "document_count": 0,
+      "error_status": "PERMISSION_DENIED"
+    },
+    {
+      "path": "schools/main/app/marks",
+      "label": "class-test marks",
+      "status": 403,
+      "accessible": false,
+      "field_names": [],
+      "document_count": 0,
+      "error_status": "PERMISSION_DENIED"
+    },
+    {
+      "path": "appUsers",
+      "label": "user/role records (collection)",
+      "status": 403,
+      "accessible": false,
+      "field_names": [],
+      "document_count": 0,
+      "error_status": "PERMISSION_DENIED"
+    }
+  ],
+  "crawled_pages": [],
+  "links": {
+    "checked": 8,
+    "results": {
+      "https://siscdacc.web.app/icon-192.png?v=20261104": {
+        "status": 200,
+        "content_type": "image/png",
+        "source": "browser",
+        "kind": "image"
+      },
+      "https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js": {
+        "status": 200,
+        "content_type": "text/javascript; charset=UTF-8",
+        "source": "browser",
+        "kind": "js"
+      },
+      "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js": {
+        "status": 200,
+        "content_type": "text/javascript; charset=UTF-8",
+        "source": "browser",
+        "kind": "js"
+      },
+      "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js": {
+        "status": 200,
+        "content_type": "text/javascript; charset=UTF-8",
+        "source": "browser",
+        "kind": "js"
+      },
+      "https://siscdacc.web.app/icon-512.png?v=20261104": {
+        "status": 200,
+        "final_url": "https://siscdacc.web.app/icon-512.png?v=20261104",
+        "content_type": "image/png",
+        "bytes": "134777",
+        "kind": "image",
+        "source": "http"
+      },
+      "https://siscdacc.web.app/icon-180.png?v=20261104": {
+        "status": 200,
+        "final_url": "https://siscdacc.web.app/icon-180.png?v=20261104",
+        "content_type": "image/png",
+        "bytes": "22464",
+        "kind": "image",
+        "source": "http"
+      },
+      "https://siscdacc.web.app/icon-maskable-512.png?v=20261104": {
+        "status": 200,
+        "final_url": "https://siscdacc.web.app/icon-maskable-512.png?v=20261104",
+        "content_type": "image/png",
+        "bytes": "80830",
+        "kind": "image",
+        "source": "http"
+      },
+      "https://siscdacc.web.app/manifest.json?v=20261104": {
+        "status": 200,
+        "final_url": "https://siscdacc.web.app/manifest.json?v=20261104",
+        "content_type": "application/json",
+        "bytes": null,
+        "kind": "manifest",
+        "source": "http"
+      }
+    }
+  },
+  "findings": [
+    {
+      "code": "FIREBASE_PUBLIC_DATA",
+      "severity": "critical",
+      "category": "Firebase / access control",
+      "title": "Firestore data is readable without authentication: student marks / parent portal data",
+      "detail": "An unauthenticated Firestore REST request returned HTTP 200 for `schools/main/public/parentMarks`. Only the authorization status and field names were inspected; field values were not stored or printed.",
+      "evidence": "HTTP 200; path=schools/main/public/parentMarks; fields=['updatedAt']; document=readable",
+      "url": "https://firestore.googleapis.com/v1/projects/siscdacc/databases/(default)/documents/schools/main/public/parentMarks",
+      "fix": "Restrict Firestore Security Rules so this path requires an authenticated, authorized user. Do not rely on a client-side PIN gate. If parents must read their own child's data, use a per-student document with rules that check the authenticated UID and custom claims, or serve it through a Cloud Function."
+    },
+    {
+      "code": "FIREBASE_PUBLIC_DATA",
+      "severity": "critical",
+      "category": "Firebase / access control",
+      "title": "Firestore data is readable without authentication: student PIN registry",
+      "detail": "An unauthenticated Firestore REST request returned HTTP 200 for `schools/main/public/studentPins`. Only the authorization status and field names were inspected; field values were not stored or printed.",
+      "evidence": "HTTP 200; path=schools/main/public/studentPins; fields=['updatedAt']; document=readable",
+      "url": "https://firestore.googleapis.com/v1/projects/siscdacc/databases/(default)/documents/schools/main/public/studentPins",
+      "fix": "Restrict Firestore Security Rules so this path requires an authenticated, authorized user. Do not rely on a client-side PIN gate. If parents must read their own child's data, use a per-student document with rules that check the authenticated UID and custom claims, or serve it through a Cloud Function."
+    },
+    {
+      "code": "AXE_ARIA_REQUIRED_CHILDREN",
+      "severity": "high",
+      "category": "Accessibility",
+      "title": "Accessibility: Certain ARIA roles must contain particular children",
+      "detail": "Ensure elements with an ARIA role that require child roles contain them Affected nodes: 1.",
+      "evidence": ".portal-switch | Fix any of the following: Element has children which are not allowed: button[tabindex]",
+      "url": "https://siscdacc.web.app/",
+      "fix": "See https://dequeuniversity.com/rules/axe/4.10/aria-required-children?application=axeAPI"
+    },
+    {
+      "code": "CLIENT_SIDE_PASSWORD_CHECK",
+      "severity": "high",
+      "category": "Client-side auth",
+      "title": "Accountant login is enforced only in client-side JavaScript",
+      "detail": "The password comparison happens in the browser, so it can be bypassed by editing JavaScript or reading local storage. It is not an authentication boundary.",
+      "evidence": "document.getElementById('loginPassword').value !== getPassword()",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Enforce authentication and authorization on the server (Firebase Auth + Security Rules or a backend API). Treat the client-side password only as a local UX lock."
+    },
+    {
+      "code": "CLIENT_DEFAULT_PASSWORD",
+      "severity": "high",
+      "category": "Client-side auth",
+      "title": "Hard-coded default password in client code",
+      "detail": "A fallback password is embedded in JavaScript. If it is not changed, anyone who views the source can enter the protected panel.",
+      "evidence": "Constant value: a********t (length 10)",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Remove the fallback. Provision a unique password during setup, force a change on first login, and enforce server-side/Firebase Auth."
+    },
+    {
+      "code": "PASSWORD_IN_BACKUP",
+      "severity": "high",
+      "category": "Client-side auth",
+      "title": "Password is included in exported backup data",
+      "detail": "A backup/export function reads the account password and includes it in a downloadable JSON file.",
+      "evidence": "password: localStorage.getItem(PASSWORD_KEY)",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Never export passwords or PINs. Encrypt backups or omit credential fields entirely."
+    },
+    {
+      "code": "STORAGE_SENSITIVE_LOCALSTORAGE",
+      "severity": "high",
+      "category": "Client-side auth",
+      "title": "Sensitive credential stored in localStorage",
+      "detail": "The code writes a password/token-like key into browser storage. Any script on the origin, or anyone with device access, can read it.",
+      "evidence": "localStorage.setItem(PASSWORD_KEY, p)",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Do not store passwords or plaintext PINs in Web Storage. Use httpOnly, Secure cookies or Firebase Auth tokens and store only non-reversible hashes when offline verification is required."
+    },
+    {
+      "code": "FIREBASE_PUBLIC_DATA",
+      "severity": "high",
+      "category": "Firebase / access control",
+      "title": "Firestore data is readable without authentication: parent communications",
+      "detail": "An unauthenticated Firestore REST request returned HTTP 200 for `schools/main/public/parentComm`. Only the authorization status and field names were inspected; field values were not stored or printed.",
+      "evidence": "HTTP 200; path=schools/main/public/parentComm; fields=['updatedAt']; document=readable",
+      "url": "https://firestore.googleapis.com/v1/projects/siscdacc/databases/(default)/documents/schools/main/public/parentComm",
+      "fix": "Restrict Firestore Security Rules so this path requires an authenticated, authorized user. Do not rely on a client-side PIN gate. If parents must read their own child's data, use a per-student document with rules that check the authenticated UID and custom claims, or serve it through a Cloud Function."
+    },
+    {
+      "code": "FIREBASE_PUBLIC_DATA",
+      "severity": "high",
+      "category": "Firebase / access control",
+      "title": "Firestore data is readable without authentication: teacher directory",
+      "detail": "An unauthenticated Firestore REST request returned HTTP 200 for `schools/main/public/teacherDirectory`. Only the authorization status and field names were inspected; field values were not stored or printed.",
+      "evidence": "HTTP 200; path=schools/main/public/teacherDirectory; fields=['updatedAt']; document=readable",
+      "url": "https://firestore.googleapis.com/v1/projects/siscdacc/databases/(default)/documents/schools/main/public/teacherDirectory",
+      "fix": "Restrict Firestore Security Rules so this path requires an authenticated, authorized user. Do not rely on a client-side PIN gate. If parents must read their own child's data, use a per-student document with rules that check the authenticated UID and custom claims, or serve it through a Cloud Function."
+    },
+    {
+      "code": "CSP_MISSING",
+      "severity": "high",
+      "category": "Security headers",
+      "title": "Content-Security-Policy header is missing",
+      "detail": "The site has no CSP. Because this page contains a very large amount of inline JavaScript, any injected script would execute with full access to the DOM, Firebase session and local data.",
+      "evidence": "No content-security-policy response header.",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Add a CSP at the host/CDN. Start with a safe minimum such as `frame-ancestors 'none'; object-src 'none'; base-uri 'self'` and then add script-src using hashes/nonces after testing."
+    },
+    {
+      "code": "AXE_COLOR_CONTRAST",
+      "severity": "medium",
+      "category": "Accessibility",
+      "title": "Accessibility: Elements must meet minimum color contrast ratio thresholds",
+      "detail": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds Affected nodes: 1.",
+      "evidence": "button[onclick=\"doFirebaseLogin()\"] | Fix any of the following: Element has insufficient color contrast of 3.76 (foreground color: #ffffff, background color: #059669, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1",
+      "url": "https://siscdacc.web.app/",
+      "fix": "See https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=axeAPI"
+    },
+    {
+      "code": "HTML_LARGE",
+      "severity": "medium",
+      "category": "Performance",
+      "title": "Home page HTML is over 1 MB",
+      "detail": "The HTML document is 1.8 MB.",
+      "evidence": "HTML bytes=1912534; inline JS=1600207; inline CSS=142249",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Move inline code to cacheable static assets and remove unused code."
+    },
+    {
+      "code": "HTML_NO_STORE_LARGE",
+      "severity": "medium",
+      "category": "Performance",
+      "title": "Large HTML is marked no-store and cannot be cached",
+      "detail": "The 1.8 MB HTML document is sent with `Cache-Control: no-store`, so every navigation downloads the whole document again, even when only a tiny part changed.",
+      "evidence": "Cache-Control: no-cache, no-store, must-revalidate; HTML bytes=1912534",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Split the inline JavaScript/CSS into versioned static files with long cache lifetimes, and cache the small HTML shell. Keep no-store only on authenticated API responses if needed."
+    },
+    {
+      "code": "INLINE_JS_HUGE",
+      "severity": "medium",
+      "category": "Performance",
+      "title": "Most JavaScript is inline and uncacheable",
+      "detail": "1.5 MB of JavaScript is embedded in the HTML document.",
+      "evidence": "inline JS=1600207; external scripts=3",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Extract JavaScript into hashed .js files served with long cache lifetimes."
+    },
+    {
+      "code": "XFO_MISSING",
+      "severity": "medium",
+      "category": "Security headers",
+      "title": "Clickjacking protection is missing",
+      "detail": "Neither X-Frame-Options nor CSP frame-ancestors prevents framing.",
+      "evidence": "",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Add `X-Frame-Options: DENY` and `frame-ancestors 'none'`."
+    },
+    {
+      "code": "XCTO_MISSING",
+      "severity": "medium",
+      "category": "Security headers",
+      "title": "X-Content-Type-Options: nosniff is missing",
+      "detail": "Browsers may MIME-sniff responses and execute content incorrectly.",
+      "evidence": "",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Add `X-Content-Type-Options: nosniff`."
+    },
+    {
+      "code": "AXE_REGION",
+      "severity": "low",
+      "category": "Accessibility",
+      "title": "Accessibility: All page content should be contained by landmarks",
+      "detail": "Ensure all page content is contained by landmarks Affected nodes: 12.",
+      "evidence": ".modal-box > div:nth-child(1) | Fix any of the following: Some page content is not contained by landmarks .modal-box > div:nth-child(2) | Fix any of the following: Some page content is not contained by landmarks .modal-box > p:nth-child(3) | Fix any of the following: Some page content is not contained by landmarks",
+      "url": "https://siscdacc.web.app/",
+      "fix": "See https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI"
+    },
+    {
+      "code": "PASSWORD_AUTOCOMPLETE",
+      "severity": "low",
+      "category": "Accessibility",
+      "title": "Password fields do not declare autocomplete",
+      "detail": "Missing autocomplete on: loginPassword. Password managers may behave inconsistently.",
+      "evidence": "",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Use autocomplete=\"current-password\" for login and \"new-password\" for registration."
+    },
+    {
+      "code": "FIREBASE_APPCHECK_MISSING",
+      "severity": "low",
+      "category": "Firebase",
+      "title": "Firebase App Check does not appear to be initialized",
+      "detail": "Without App Check, scripted clients can call Firebase APIs with the public web key more easily.",
+      "evidence": "",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Enable App Check (reCAPTCHA Enterprise/App Attest) and enforce it for Firestore and Auth."
+    },
+    {
+      "code": "COOP_MISSING",
+      "severity": "low",
+      "category": "Security headers",
+      "title": "Cross-Origin-Opener-Policy is missing",
+      "detail": "Cross-window attacks such as XS-Leaks are not mitigated.",
+      "evidence": "",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Add `Cross-Origin-Opener-Policy: same-origin` after testing popups."
+    },
+    {
+      "code": "PERMISSIONS_POLICY_MISSING",
+      "severity": "low",
+      "category": "Security headers",
+      "title": "Permissions-Policy header is missing",
+      "detail": "Browser features (camera, microphone, geolocation) are not restricted.",
+      "evidence": "",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Add `Permissions-Policy: camera=(), microphone=(), geolocation=()`."
+    },
+    {
+      "code": "REFERRER_POLICY_MISSING",
+      "severity": "low",
+      "category": "Security headers",
+      "title": "Referrer-Policy header is missing",
+      "detail": "URLs (which may contain student IDs or tokens) can leak in the Referer header.",
+      "evidence": "",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Add `Referrer-Policy: strict-origin-when-cross-origin` or `no-referrer`."
+    },
+    {
+      "code": "SRI_MISSING",
+      "severity": "low",
+      "category": "Supply chain",
+      "title": "Third-party scripts/styles have no Subresource Integrity",
+      "detail": "3 cross-origin resource(s) are not pinned to a known hash.",
+      "evidence": "https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js; https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js; https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Add integrity + crossorigin to third-party assets when the CDN supports CORS."
+    },
+    {
+      "code": "AXE_SUMMARY",
+      "severity": "info",
+      "category": "Accessibility",
+      "title": "axe-core reported 3 accessibility rule violation(s)",
+      "detail": "See the individual AXE_* findings for selectors and fixes.",
+      "evidence": "",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Fix high-impact violations first (ARIA roles, names, contrast, forms)."
+    },
+    {
+      "code": "FORM_LABELS_STATIC",
+      "severity": "info",
+      "category": "Accessibility",
+      "title": "Form controls lack explicit labels in static HTML",
+      "detail": "227 controls have no <label for>, aria-label or title. Some may be hidden tab panels; the browser axe scan checks the visible ones.",
+      "evidence": "",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Associate every visible control with a <label for> or aria-label."
+    },
+    {
+      "code": "OPTIONAL_FILE_MISSING",
+      "severity": "info",
+      "category": "Discoverability",
+      "title": "robots.txt was not found",
+      "detail": "This is optional. For a private, noindex portal it is not a bug, but a security.txt file helps researchers report issues.",
+      "evidence": "",
+      "url": "https://siscdacc.web.app/robots.txt",
+      "fix": "Add the file only if the site should be crawled/indexed."
+    },
+    {
+      "code": "OPTIONAL_FILE_MISSING",
+      "severity": "info",
+      "category": "Discoverability",
+      "title": "security.txt was not found",
+      "detail": "This is optional. For a private, noindex portal it is not a bug, but a security.txt file helps researchers report issues.",
+      "evidence": "",
+      "url": "https://siscdacc.web.app/.well-known/security.txt",
+      "fix": "Add a security.txt with a contact address."
+    },
+    {
+      "code": "OPTIONAL_FILE_MISSING",
+      "severity": "info",
+      "category": "Discoverability",
+      "title": "sitemap.xml was not found",
+      "detail": "This is optional. For a private, noindex portal it is not a bug, but a security.txt file helps researchers report issues.",
+      "evidence": "",
+      "url": "https://siscdacc.web.app/sitemap.xml",
+      "fix": "Add the file only if the site should be crawled/indexed."
+    },
+    {
+      "code": "FIREBASE_CONFIG_PUBLIC",
+      "severity": "info",
+      "category": "Firebase",
+      "title": "Firebase configuration is present in public HTML",
+      "detail": "Firebase web apps must expose the project ID and web API key. This is not a secret by itself; protection depends on Security Rules and App Check.",
+      "evidence": "projectId=siscdacc; authDomain=siscdacc.firebaseapp.com",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Verify Firestore/Storage Rules with the emulator, restrict the API key to your domains, and enable App Check."
+    },
+    {
+      "code": "SECRET_GOOGLE_API_KEY",
+      "severity": "info",
+      "category": "Secrets",
+      "title": "Google/Firebase API key exposed in the page (normal for Firebase web apps)",
+      "detail": "A Google/Firebase API key is present in the public HTML. This is normal for Firebase web apps, but the key must be restricted by Firebase Security Rules, API restrictions and App Check.",
+      "evidence": "1 match(es); sample: A*************************************I",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Do not treat the web API key as a secret. Verify Firestore/Storage rules deny unauthenticated access and enable Firebase App Check."
+    },
+    {
+      "code": "INLINE_HANDLERS",
+      "severity": "info",
+      "category": "Security headers",
+      "title": "Page uses inline event handlers",
+      "detail": "379 onclick/onchange-style attributes make CSP hardening harder.",
+      "evidence": "",
+      "url": "https://siscdacc.web.app/",
+      "fix": "Move event handlers into external JavaScript and use addEventListener."
+    }
+  ],
+  "passed": [
+    "Home page returned HTTP 200",
+    "HTTPS is used for the final page",
+    "HSTS is enabled (max-age=31556926)",
+    "Response compression is enabled (gzip)",
+    "TLS certificate is valid for 80 more days",
+    "HTTP requests redirect to HTTPS",
+    "Web app manifest is valid and its icons are reachable",
+    "favicon is reachable",
+    "Apple touch icon is reachable",
+    "Page title is set: Scholars International School & College — Accounts & Class Test Marks",
+    "Search-engine indexing is disabled (noindex)",
+    "No additional same-origin HTML links were found to crawl",
+    "Modal/dialog rendered (2 visible container(s))",
+    "No console errors, page errors or failed requests were observed",
+    "No horizontal overflow at 1440x900",
+    "No horizontal overflow at 768x1024",
+    "No horizontal overflow at 390x844",
+    "All 8 checked links/assets responded successfully",
+    "Firestore denied unauthenticated access to schools/main/app/state",
+    "Firestore denied unauthenticated access to schools/main/app/marks",
+    "Firestore denied unauthenticated access to appUsers"
+  ],
+  "warnings": [
+    "Screenshot screenshot-desktop.png failed: Page.screenshot: Protocol error (Page.captureScreenshot): Unable to capture screenshot\nCall log:\n  - taking page screenshot\n    - disabled all CSS animations\n  - waiting for fonts to load...\n  - fonts loaded\n"
+  ],
+  "scope": "Read-only audit. No forms were submitted and no data was changed. The optional Firestore probe used masked fields and reports only authorization status and field names."
+}

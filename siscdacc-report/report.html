@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Website audit — https://siscdacc.web.app/</title>
+<style>
+:root{
+  --bg:#eef2f7; --card:#ffffff; --ink:#0f172a; --muted:#64748b;
+  --border:#dbe3ef; --critical:#b91c1c; --high:#dc2626; --medium:#d97706;
+  --low:#2563eb; --info:#64748b; --good:#15803d;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:24px}
+header{background:linear-gradient(135deg,#0f172a,#1e3a8a);color:#fff;border-radius:16px;padding:28px 30px;box-shadow:0 16px 36px rgba(15,23,42,.20)}
+header h1{margin:0 0 6px;font-size:26px;letter-spacing:-.02em}
+header p{margin:4px 0;opacity:.86}
+.score-row{display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-top:20px}
+.score{font-size:52px;font-weight:850;line-height:1}
+.grade{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);padding:6px 12px;border-radius:999px;font-weight:750}
+.summary-line{margin-top:8px;font-weight:650}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;box-shadow:0 3px 10px rgba(15,23,42,.04)}
+.card .n{font-size:26px;font-weight:850}
+.card .l{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:750}
+.critical .n{color:var(--critical)} .high .n{color:var(--high)} .medium .n{color:var(--medium)} .low .n{color:var(--low)} .info .n{color:var(--info)}
+h2{margin:28px 0 12px;font-size:20px}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 20px;box-shadow:0 3px 10px rgba(15,23,42,.04);margin-bottom:16px;overflow-x:auto}
+.finding{overflow-wrap:anywhere}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px}
+.filters button{border:1px solid var(--border);background:#fff;color:var(--ink);padding:7px 12px;border-radius:999px;font-weight:700;cursor:pointer}
+.filters button.active{background:#1e3a8a;color:#fff;border-color:#1e3a8a}
+.finding{background:var(--card);border:1px solid var(--border);border-left:6px solid var(--info);border-radius:12px;padding:16px 18px;margin:12px 0;box-shadow:0 3px 10px rgba(15,23,42,.04)}
+.finding.sev-critical{border-left-color:var(--critical)} .finding.sev-high{border-left-color:var(--high)}
+.finding.sev-medium{border-left-color:var(--medium)} .finding.sev-low{border-left-color:var(--low)}
+.finding.sev-info{border-left-color:var(--info)}
+.finding-head{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.finding h3{margin:8px 0 6px;font-size:17px}
+.finding p{margin:6px 0;color:#334155}
+.badge{display:inline-block;padding:3px 8px;border-radius:6px;color:#fff;font-size:11px;font-weight:850;letter-spacing:.06em}
+.badge-critical{background:var(--critical)} .badge-high{background:var(--high)} .badge-medium{background:var(--medium)}
+.badge-low{background:var(--low)} .badge-info{background:var(--info)}
+.category,.code{font-size:12px;color:var(--muted);font-weight:650}
+.code{margin-left:auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.url code{background:#f1f5f9;padding:2px 6px;border-radius:4px;overflow-wrap:anywhere}
+.fix{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:8px 10px}
+details{margin-top:8px} summary{cursor:pointer;color:#1d4ed8;font-weight:700}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#0f172a;color:#e2e8f0;padding:12px;border-radius:8px;font-size:12.5px}
+table.metrics{width:100%;border-collapse:collapse;font-size:13.5px}
+table.metrics th,table.metrics td{text-align:left;border-bottom:1px solid var(--border);padding:8px;vertical-align:top;overflow-wrap:anywhere}
+table.metrics th{color:#475569;width:30%}
+table.metrics thead th{background:#f8fafc;color:#1e3a8a;width:auto}
+.good{color:var(--good);font-weight:750} .bad{color:var(--high);font-weight:750}
+ul.checks{margin:0;padding-left:22px} ul.checks li{margin:5px 0}
+.screens{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+figure{margin:0} figure img{width:100%;border:1px solid var(--border);border-radius:10px;background:#fff}
+figcaption{font-size:12px;color:var(--muted);text-align:center;margin-top:4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.muted{color:var(--muted)}
+footer{color:var(--muted);font-size:12.5px;margin:26px 0 10px;text-align:center}
+@media (max-width:760px){.two,.screens{grid-template-columns:1fr} .code{margin-left:0} header{padding:22px}}
+@media print{body{background:#fff} .filters{display:none} .finding,.panel,header{box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Website audit report</h1>
+  <p><strong>https://siscdacc.web.app/</strong></p>
+  <p>Generated 2026-11-07T08:52:19+00:00 · site_audit.py v1.1.0 · 51.7s</p>
+  <div class="score-row">
+    <div><div class="score">0<span style="font-size:20px;opacity:.6">/100</span></div><div class="summary-line">Critical 2 · High 8 · Medium 6 · Low 7 · Info 8</div></div>
+    <div class="grade">Grade F</div>
+  </div>
+</header>
+
+<div class="grid">
+  <div class="card critical"><div class="n">2</div><div class="l">Critical</div></div>
+  <div class="card high"><div class="n">8</div><div class="l">High</div></div>
+  <div class="card medium"><div class="n">6</div><div class="l">Medium</div></div>
+  <div class="card low"><div class="n">7</div><div class="l">Low</div></div>
+  <div class="card info"><div class="n">8</div><div class="l">Info</div></div>
+</div>
+
+<div class="panel">
+  <h2>Scope and safety</h2>
+  <p>This was a read-only audit: no forms were submitted and no data was changed. The optional Firestore probe used masked fields (<code>mask.fieldPaths=updatedAt</code>) and reports only whether a path is readable and its field names. It never prints document values. Run it only against sites you own or are authorized to test.</p>
+</div>
+
+<h2>Findings</h2>
+<div class="filters" id="filters">
+  <button class="active" data-filter="all">All (31)</button>
+  <button data-filter="critical">Critical (2)</button>
+  <button data-filter="high">High (8)</button>
+  <button data-filter="medium">Medium (6)</button>
+  <button data-filter="low">Low (7)</button>
+  <button data-filter="info">Info (8)</button>
+</div>
+<div id="findings">
+        <article class="finding sev-critical" data-severity="critical">
+          <div class="finding-head">
+            <span class="badge badge-critical">CRITICAL</span>
+            <span class="category">Firebase / access control</span>
+            <span class="code">FIREBASE_PUBLIC_DATA</span>
+          </div>
+          <h3>Firestore data is readable without authentication: student marks / parent portal data</h3>
+          <p>An unauthenticated Firestore REST request returned HTTP 200 for `schools/main/public/parentMarks`. Only the authorization status and field names were inspected; field values were not stored or printed.</p>
+          <p class="url"><strong>URL:</strong> <code>https://firestore.googleapis.com/v1/projects/siscdacc/databases/(default)/documents/schools/main/public/parentMarks</code></p>
+          <p class="fix"><strong>Fix:</strong> Restrict Firestore Security Rules so this path requires an authenticated, authorized user. Do not rely on a client-side PIN gate. If parents must read their own child&#x27;s data, use a per-student document with rules that check the authenticated UID and custom claims, or serve it through a Cloud Function.</p>
+          <details><summary>Evidence</summary><pre>HTTP 200; path=schools/main/public/parentMarks; fields=[&#x27;updatedAt&#x27;]; document=readable</pre></details>
+        </article>
+        
+        <article class="finding sev-critical" data-severity="critical">
+          <div class="finding-head">
+            <span class="badge badge-critical">CRITICAL</span>
+            <span class="category">Firebase / access control</span>
+            <span class="code">FIREBASE_PUBLIC_DATA</span>
+          </div>
+          <h3>Firestore data is readable without authentication: student PIN registry</h3>
+          <p>An unauthenticated Firestore REST request returned HTTP 200 for `schools/main/public/studentPins`. Only the authorization status and field names were inspected; field values were not stored or printed.</p>
+          <p class="url"><strong>URL:</strong> <code>https://firestore.googleapis.com/v1/projects/siscdacc/databases/(default)/documents/schools/main/public/studentPins</code></p>
+          <p class="fix"><strong>Fix:</strong> Restrict Firestore Security Rules so this path requires an authenticated, authorized user. Do not rely on a client-side PIN gate. If parents must read their own child&#x27;s data, use a per-student document with rules that check the authenticated UID and custom claims, or serve it through a Cloud Function.</p>
+          <details><summary>Evidence</summary><pre>HTTP 200; path=schools/main/public/studentPins; fields=[&#x27;updatedAt&#x27;]; document=readable</pre></details>
+        </article>
+        
+        <article class="finding sev-high" data-severity="high">
+          <div class="finding-head">
+            <span class="badge badge-high">HIGH</span>
+            <span class="category">Accessibility</span>
+            <span class="code">AXE_ARIA_REQUIRED_CHILDREN</span>
+          </div>
+          <h3>Accessibility: Certain ARIA roles must contain particular children</h3>
+          <p>Ensure elements with an ARIA role that require child roles contain them Affected nodes: 1.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> See https://dequeuniversity.com/rules/axe/4.10/aria-required-children?application=axeAPI</p>
+          <details><summary>Evidence</summary><pre>.portal-switch | Fix any of the following: Element has children which are not allowed: button[tabindex]</pre></details>
+        </article>
+        
+        <article class="finding sev-high" data-severity="high">
+          <div class="finding-head">
+            <span class="badge badge-high">HIGH</span>
+            <span class="category">Client-side auth</span>
+            <span class="code">CLIENT_SIDE_PASSWORD_CHECK</span>
+          </div>
+          <h3>Accountant login is enforced only in client-side JavaScript</h3>
+          <p>The password comparison happens in the browser, so it can be bypassed by editing JavaScript or reading local storage. It is not an authentication boundary.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Enforce authentication and authorization on the server (Firebase Auth + Security Rules or a backend API). Treat the client-side password only as a local UX lock.</p>
+          <details><summary>Evidence</summary><pre>document.getElementById(&#x27;loginPassword&#x27;).value !== getPassword()</pre></details>
+        </article>
+        
+        <article class="finding sev-high" data-severity="high">
+          <div class="finding-head">
+            <span class="badge badge-high">HIGH</span>
+            <span class="category">Client-side auth</span>
+            <span class="code">CLIENT_DEFAULT_PASSWORD</span>
+          </div>
+          <h3>Hard-coded default password in client code</h3>
+          <p>A fallback password is embedded in JavaScript. If it is not changed, anyone who views the source can enter the protected panel.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Remove the fallback. Provision a unique password during setup, force a change on first login, and enforce server-side/Firebase Auth.</p>
+          <details><summary>Evidence</summary><pre>Constant value: a********t (length 10)</pre></details>
+        </article>
+        
+        <article class="finding sev-high" data-severity="high">
+          <div class="finding-head">
+            <span class="badge badge-high">HIGH</span>
+            <span class="category">Client-side auth</span>
+            <span class="code">PASSWORD_IN_BACKUP</span>
+          </div>
+          <h3>Password is included in exported backup data</h3>
+          <p>A backup/export function reads the account password and includes it in a downloadable JSON file.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Never export passwords or PINs. Encrypt backups or omit credential fields entirely.</p>
+          <details><summary>Evidence</summary><pre>password: localStorage.getItem(PASSWORD_KEY)</pre></details>
+        </article>
+        
+        <article class="finding sev-high" data-severity="high">
+          <div class="finding-head">
+            <span class="badge badge-high">HIGH</span>
+            <span class="category">Client-side auth</span>
+            <span class="code">STORAGE_SENSITIVE_LOCALSTORAGE</span>
+          </div>
+          <h3>Sensitive credential stored in localStorage</h3>
+          <p>The code writes a password/token-like key into browser storage. Any script on the origin, or anyone with device access, can read it.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Do not store passwords or plaintext PINs in Web Storage. Use httpOnly, Secure cookies or Firebase Auth tokens and store only non-reversible hashes when offline verification is required.</p>
+          <details><summary>Evidence</summary><pre>localStorage.setItem(PASSWORD_KEY, p)</pre></details>
+        </article>
+        
+        <article class="finding sev-high" data-severity="high">
+          <div class="finding-head">
+            <span class="badge badge-high">HIGH</span>
+            <span class="category">Firebase / access control</span>
+            <span class="code">FIREBASE_PUBLIC_DATA</span>
+          </div>
+          <h3>Firestore data is readable without authentication: parent communications</h3>
+          <p>An unauthenticated Firestore REST request returned HTTP 200 for `schools/main/public/parentComm`. Only the authorization status and field names were inspected; field values were not stored or printed.</p>
+          <p class="url"><strong>URL:</strong> <code>https://firestore.googleapis.com/v1/projects/siscdacc/databases/(default)/documents/schools/main/public/parentComm</code></p>
+          <p class="fix"><strong>Fix:</strong> Restrict Firestore Security Rules so this path requires an authenticated, authorized user. Do not rely on a client-side PIN gate. If parents must read their own child&#x27;s data, use a per-student document with rules that check the authenticated UID and custom claims, or serve it through a Cloud Function.</p>
+          <details><summary>Evidence</summary><pre>HTTP 200; path=schools/main/public/parentComm; fields=[&#x27;updatedAt&#x27;]; document=readable</pre></details>
+        </article>
+        
+        <article class="finding sev-high" data-severity="high">
+          <div class="finding-head">
+            <span class="badge badge-high">HIGH</span>
+            <span class="category">Firebase / access control</span>
+            <span class="code">FIREBASE_PUBLIC_DATA</span>
+          </div>
+          <h3>Firestore data is readable without authentication: teacher directory</h3>
+          <p>An unauthenticated Firestore REST request returned HTTP 200 for `schools/main/public/teacherDirectory`. Only the authorization status and field names were inspected; field values were not stored or printed.</p>
+          <p class="url"><strong>URL:</strong> <code>https://firestore.googleapis.com/v1/projects/siscdacc/databases/(default)/documents/schools/main/public/teacherDirectory</code></p>
+          <p class="fix"><strong>Fix:</strong> Restrict Firestore Security Rules so this path requires an authenticated, authorized user. Do not rely on a client-side PIN gate. If parents must read their own child&#x27;s data, use a per-student document with rules that check the authenticated UID and custom claims, or serve it through a Cloud Function.</p>
+          <details><summary>Evidence</summary><pre>HTTP 200; path=schools/main/public/teacherDirectory; fields=[&#x27;updatedAt&#x27;]; document=readable</pre></details>
+        </article>
+        
+        <article class="finding sev-high" data-severity="high">
+          <div class="finding-head">
+            <span class="badge badge-high">HIGH</span>
+            <span class="category">Security headers</span>
+            <span class="code">CSP_MISSING</span>
+          </div>
+          <h3>Content-Security-Policy header is missing</h3>
+          <p>The site has no CSP. Because this page contains a very large amount of inline JavaScript, any injected script would execute with full access to the DOM, Firebase session and local data.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Add a CSP at the host/CDN. Start with a safe minimum such as `frame-ancestors &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;self&#x27;` and then add script-src using hashes/nonces after testing.</p>
+          <details><summary>Evidence</summary><pre>No content-security-policy response header.</pre></details>
+        </article>
+        
+        <article class="finding sev-medium" data-severity="medium">
+          <div class="finding-head">
+            <span class="badge badge-medium">MEDIUM</span>
+            <span class="category">Accessibility</span>
+            <span class="code">AXE_COLOR_CONTRAST</span>
+          </div>
+          <h3>Accessibility: Elements must meet minimum color contrast ratio thresholds</h3>
+          <p>Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds Affected nodes: 1.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> See https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=axeAPI</p>
+          <details><summary>Evidence</summary><pre>button[onclick=&quot;doFirebaseLogin()&quot;] | Fix any of the following: Element has insufficient color contrast of 3.76 (foreground color: #ffffff, background color: #059669, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1</pre></details>
+        </article>
+        
+        <article class="finding sev-medium" data-severity="medium">
+          <div class="finding-head">
+            <span class="badge badge-medium">MEDIUM</span>
+            <span class="category">Performance</span>
+            <span class="code">HTML_LARGE</span>
+          </div>
+          <h3>Home page HTML is over 1 MB</h3>
+          <p>The HTML document is 1.8 MB.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Move inline code to cacheable static assets and remove unused code.</p>
+          <details><summary>Evidence</summary><pre>HTML bytes=1912534; inline JS=1600207; inline CSS=142249</pre></details>
+        </article>
+        
+        <article class="finding sev-medium" data-severity="medium">
+          <div class="finding-head">
+            <span class="badge badge-medium">MEDIUM</span>
+            <span class="category">Performance</span>
+            <span class="code">HTML_NO_STORE_LARGE</span>
+          </div>
+          <h3>Large HTML is marked no-store and cannot be cached</h3>
+          <p>The 1.8 MB HTML document is sent with `Cache-Control: no-store`, so every navigation downloads the whole document again, even when only a tiny part changed.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Split the inline JavaScript/CSS into versioned static files with long cache lifetimes, and cache the small HTML shell. Keep no-store only on authenticated API responses if needed.</p>
+          <details><summary>Evidence</summary><pre>Cache-Control: no-cache, no-store, must-revalidate; HTML bytes=1912534</pre></details>
+        </article>
+        
+        <article class="finding sev-medium" data-severity="medium">
+          <div class="finding-head">
+            <span class="badge badge-medium">MEDIUM</span>
+            <span class="category">Performance</span>
+            <span class="code">INLINE_JS_HUGE</span>
+          </div>
+          <h3>Most JavaScript is inline and uncacheable</h3>
+          <p>1.5 MB of JavaScript is embedded in the HTML document.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Extract JavaScript into hashed .js files served with long cache lifetimes.</p>
+          <details><summary>Evidence</summary><pre>inline JS=1600207; external scripts=3</pre></details>
+        </article>
+        
+        <article class="finding sev-medium" data-severity="medium">
+          <div class="finding-head">
+            <span class="badge badge-medium">MEDIUM</span>
+            <span class="category">Security headers</span>
+            <span class="code">XFO_MISSING</span>
+          </div>
+          <h3>Clickjacking protection is missing</h3>
+          <p>Neither X-Frame-Options nor CSP frame-ancestors prevents framing.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Add `X-Frame-Options: DENY` and `frame-ancestors &#x27;none&#x27;`.</p>
+          
+        </article>
+        
+        <article class="finding sev-medium" data-severity="medium">
+          <div class="finding-head">
+            <span class="badge badge-medium">MEDIUM</span>
+            <span class="category">Security headers</span>
+            <span class="code">XCTO_MISSING</span>
+          </div>
+          <h3>X-Content-Type-Options: nosniff is missing</h3>
+          <p>Browsers may MIME-sniff responses and execute content incorrectly.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Add `X-Content-Type-Options: nosniff`.</p>
+          
+        </article>
+        
+        <article class="finding sev-low" data-severity="low">
+          <div class="finding-head">
+            <span class="badge badge-low">LOW</span>
+            <span class="category">Accessibility</span>
+            <span class="code">AXE_REGION</span>
+          </div>
+          <h3>Accessibility: All page content should be contained by landmarks</h3>
+          <p>Ensure all page content is contained by landmarks Affected nodes: 12.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> See https://dequeuniversity.com/rules/axe/4.10/region?application=axeAPI</p>
+          <details><summary>Evidence</summary><pre>.modal-box &gt; div:nth-child(1) | Fix any of the following: Some page content is not contained by landmarks .modal-box &gt; div:nth-child(2) | Fix any of the following: Some page content is not contained by landmarks .modal-box &gt; p:nth-child(3) | Fix any of the following: Some page content is not contained by landmarks</pre></details>
+        </article>
+        
+        <article class="finding sev-low" data-severity="low">
+          <div class="finding-head">
+            <span class="badge badge-low">LOW</span>
+            <span class="category">Accessibility</span>
+            <span class="code">PASSWORD_AUTOCOMPLETE</span>
+          </div>
+          <h3>Password fields do not declare autocomplete</h3>
+          <p>Missing autocomplete on: loginPassword. Password managers may behave inconsistently.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Use autocomplete=&quot;current-password&quot; for login and &quot;new-password&quot; for registration.</p>
+          
+        </article>
+        
+        <article class="finding sev-low" data-severity="low">
+          <div class="finding-head">
+            <span class="badge badge-low">LOW</span>
+            <span class="category">Firebase</span>
+            <span class="code">FIREBASE_APPCHECK_MISSING</span>
+          </div>
+          <h3>Firebase App Check does not appear to be initialized</h3>
+          <p>Without App Check, scripted clients can call Firebase APIs with the public web key more easily.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Enable App Check (reCAPTCHA Enterprise/App Attest) and enforce it for Firestore and Auth.</p>
+          
+        </article>
+        
+        <article class="finding sev-low" data-severity="low">
+          <div class="finding-head">
+            <span class="badge badge-low">LOW</span>
+            <span class="category">Security headers</span>
+            <span class="code">COOP_MISSING</span>
+          </div>
+          <h3>Cross-Origin-Opener-Policy is missing</h3>
+          <p>Cross-window attacks such as XS-Leaks are not mitigated.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Add `Cross-Origin-Opener-Policy: same-origin` after testing popups.</p>
+          
+        </article>
+        
+        <article class="finding sev-low" data-severity="low">
+          <div class="finding-head">
+            <span class="badge badge-low">LOW</span>
+            <span class="category">Security headers</span>
+            <span class="code">PERMISSIONS_POLICY_MISSING</span>
+          </div>
+          <h3>Permissions-Policy header is missing</h3>
+          <p>Browser features (camera, microphone, geolocation) are not restricted.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Add `Permissions-Policy: camera=(), microphone=(), geolocation=()`.</p>
+          
+        </article>
+        
+        <article class="finding sev-low" data-severity="low">
+          <div class="finding-head">
+            <span class="badge badge-low">LOW</span>
+            <span class="category">Security headers</span>
+            <span class="code">REFERRER_POLICY_MISSING</span>
+          </div>
+          <h3>Referrer-Policy header is missing</h3>
+          <p>URLs (which may contain student IDs or tokens) can leak in the Referer header.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Add `Referrer-Policy: strict-origin-when-cross-origin` or `no-referrer`.</p>
+          
+        </article>
+        
+        <article class="finding sev-low" data-severity="low">
+          <div class="finding-head">
+            <span class="badge badge-low">LOW</span>
+            <span class="category">Supply chain</span>
+            <span class="code">SRI_MISSING</span>
+          </div>
+          <h3>Third-party scripts/styles have no Subresource Integrity</h3>
+          <p>3 cross-origin resource(s) are not pinned to a known hash.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Add integrity + crossorigin to third-party assets when the CDN supports CORS.</p>
+          <details><summary>Evidence</summary><pre>https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js; https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js; https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js</pre></details>
+        </article>
+        
+        <article class="finding sev-info" data-severity="info">
+          <div class="finding-head">
+            <span class="badge badge-info">INFO</span>
+            <span class="category">Accessibility</span>
+            <span class="code">AXE_SUMMARY</span>
+          </div>
+          <h3>axe-core reported 3 accessibility rule violation(s)</h3>
+          <p>See the individual AXE_* findings for selectors and fixes.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Fix high-impact violations first (ARIA roles, names, contrast, forms).</p>
+          
+        </article>
+        
+        <article class="finding sev-info" data-severity="info">
+          <div class="finding-head">
+            <span class="badge badge-info">INFO</span>
+            <span class="category">Accessibility</span>
+            <span class="code">FORM_LABELS_STATIC</span>
+          </div>
+          <h3>Form controls lack explicit labels in static HTML</h3>
+          <p>227 controls have no &lt;label for&gt;, aria-label or title. Some may be hidden tab panels; the browser axe scan checks the visible ones.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Associate every visible control with a &lt;label for&gt; or aria-label.</p>
+          
+        </article>
+        
+        <article class="finding sev-info" data-severity="info">
+          <div class="finding-head">
+            <span class="badge badge-info">INFO</span>
+            <span class="category">Discoverability</span>
+            <span class="code">OPTIONAL_FILE_MISSING</span>
+          </div>
+          <h3>robots.txt was not found</h3>
+          <p>This is optional. For a private, noindex portal it is not a bug, but a security.txt file helps researchers report issues.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/robots.txt</code></p>
+          <p class="fix"><strong>Fix:</strong> Add the file only if the site should be crawled/indexed.</p>
+          
+        </article>
+        
+        <article class="finding sev-info" data-severity="info">
+          <div class="finding-head">
+            <span class="badge badge-info">INFO</span>
+            <span class="category">Discoverability</span>
+            <span class="code">OPTIONAL_FILE_MISSING</span>
+          </div>
+          <h3>security.txt was not found</h3>
+          <p>This is optional. For a private, noindex portal it is not a bug, but a security.txt file helps researchers report issues.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/.well-known/security.txt</code></p>
+          <p class="fix"><strong>Fix:</strong> Add a security.txt with a contact address.</p>
+          
+        </article>
+        
+        <article class="finding sev-info" data-severity="info">
+          <div class="finding-head">
+            <span class="badge badge-info">INFO</span>
+            <span class="category">Discoverability</span>
+            <span class="code">OPTIONAL_FILE_MISSING</span>
+          </div>
+          <h3>sitemap.xml was not found</h3>
+          <p>This is optional. For a private, noindex portal it is not a bug, but a security.txt file helps researchers report issues.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/sitemap.xml</code></p>
+          <p class="fix"><strong>Fix:</strong> Add the file only if the site should be crawled/indexed.</p>
+          
+        </article>
+        
+        <article class="finding sev-info" data-severity="info">
+          <div class="finding-head">
+            <span class="badge badge-info">INFO</span>
+            <span class="category">Firebase</span>
+            <span class="code">FIREBASE_CONFIG_PUBLIC</span>
+          </div>
+          <h3>Firebase configuration is present in public HTML</h3>
+          <p>Firebase web apps must expose the project ID and web API key. This is not a secret by itself; protection depends on Security Rules and App Check.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Verify Firestore/Storage Rules with the emulator, restrict the API key to your domains, and enable App Check.</p>
+          <details><summary>Evidence</summary><pre>projectId=siscdacc; authDomain=siscdacc.firebaseapp.com</pre></details>
+        </article>
+        
+        <article class="finding sev-info" data-severity="info">
+          <div class="finding-head">
+            <span class="badge badge-info">INFO</span>
+            <span class="category">Secrets</span>
+            <span class="code">SECRET_GOOGLE_API_KEY</span>
+          </div>
+          <h3>Google/Firebase API key exposed in the page (normal for Firebase web apps)</h3>
+          <p>A Google/Firebase API key is present in the public HTML. This is normal for Firebase web apps, but the key must be restricted by Firebase Security Rules, API restrictions and App Check.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Do not treat the web API key as a secret. Verify Firestore/Storage rules deny unauthenticated access and enable Firebase App Check.</p>
+          <details><summary>Evidence</summary><pre>1 match(es); sample: A*************************************I</pre></details>
+        </article>
+        
+        <article class="finding sev-info" data-severity="info">
+          <div class="finding-head">
+            <span class="badge badge-info">INFO</span>
+            <span class="category">Security headers</span>
+            <span class="code">INLINE_HANDLERS</span>
+          </div>
+          <h3>Page uses inline event handlers</h3>
+          <p>379 onclick/onchange-style attributes make CSP hardening harder.</p>
+          <p class="url"><strong>URL:</strong> <code>https://siscdacc.web.app/</code></p>
+          <p class="fix"><strong>Fix:</strong> Move event handlers into external JavaScript and use addEventListener.</p>
+          
+        </article>
+        </div>
+
+<h2>Browser evidence</h2>
+<div class="panel">
+  <div class="screens"><figure><img src="screenshot-mobile.png" alt="screenshot-mobile.png"><figcaption>screenshot-mobile.png</figcaption></figure></div>
+  <h3>Rendered page metrics</h3>
+  <table class="metrics"><tr><th>title</th><td>Scholars International School &amp; College — Accounts &amp; Class Test Marks</td></tr><tr><th>url</th><td>https://siscdacc.web.app/</td></tr><tr><th>readyState</th><td>complete</td></tr><tr><th>bodyTextLen</th><td>482</td></tr><tr><th>nodes</th><td>2217</td></tr><tr><th>scripts</th><td>6</td></tr><tr><th>stylesheets</th><td>1</td></tr><tr><th>images</th><td>3</td></tr><tr><th>forms</th><td>11</td></tr><tr><th>inputs</th><td>267</td></tr><tr><th>buttonsCount</th><td>284</td></tr><tr><th>linksCount</th><td>0</td></tr><tr><th>dialogsVisible</th><td>2</td></tr><tr><th>headings</th><td>[&quot;🔐 Accounts &amp; Reports Login&quot;]</td></tr><tr><th>buttons</th><td>[&quot;📲 Install SISCD App&quot;, &quot;🔗 Copy App Link&quot;, &quot;📤 Share Install Msg&quot;, &quot;💼 Accounts&quot;, &quot;📝 Teachers&quot;, &quot;🎓 Students&quot;, &quot;☁️ Email Login&quot;, &quot;👥 Collector PIN&quot;, &quot;👔 Director PIN&quot;, &quot;👁️&quot;, &quot;☁️ Login Online&quot;, &quot;Forgot password?&quot;]</td></tr><tr><th>localStorageKeys</th><td>[&quot;siscd_acc_login_mode&quot;]</td></tr><tr><th>sessionStorageKeys</th><td>[]</td></tr><tr><th>hasUndefined</th><td>False</td></tr><tr><th>hasNaN</th><td>False</td></tr><tr><th>hasObjectObject</th><td>False</td></tr><tr><th>scrollWidth</th><td>1440</td></tr><tr><th>innerWidth</th><td>1440</td></tr><tr><th>scrollHeight</th><td>900</td></tr><tr><th>innerHeight</th><td>900</td></tr><tr><th>lang</th><td>en</td></tr><tr><th>metaRobots</th><td>noindex, nofollow, noarchive, nosnippet</td></tr><tr><th>viewportMeta</th><td>width=device-width, initial-scale=1.0</td></tr><tr><th>nav</th><td>{&quot;ttfb&quot;: 975, &quot;domContentLoaded&quot;: 4267, &quot;load&quot;: 4418, &quot;duration&quot;: 4418, &quot;transferSize&quot;: 331024, &quot;encodedBodySize&quot;: 330724}</td></tr><tr><th>resourceSummary</th><td>{&quot;count&quot;: 7, &quot;transferBytes&quot;: 25703, &quot;byType&quot;: {&quot;img&quot;: 1, &quot;script&quot;: 3, &quot;other&quot;: 1, &quot;fetch&quot;: 2}}</td></tr><tr><th>jsHeap</th><td>5817148</td></tr></table>
+  <h3>Responsive layout</h3>
+  <table class="metrics"><thead><tr><th>Viewport</th><th>Width</th><th>Scroll width</th><th>Overflow</th></tr></thead><tbody><tr><td>desktop</td><td>1440px</td><td>1440px</td><td class="good">0px</td></tr><tr><td>tablet</td><td>768px</td><td>768px</td><td class="good">0px</td></tr><tr><td>mobile</td><td>390px</td><td>390px</td><td class="good">0px</td></tr></tbody></table>
+  <h3>Touch targets</h3>
+  <table class="metrics"><tr><th>checked</th><td>14</td></tr><tr><th>count</th><td>0</td></tr><tr><th>samples</th><td>[]</td></tr></table>
+</div>
+
+<h2>Firebase / Firestore authorization probe</h2>
+<div class="panel">
+  <p class="muted">Read-only, unauthenticated probe. Only status and field names are recorded; values are never stored.</p>
+  <table class="metrics"><thead><tr><th>Path</th><th>HTTP</th><th>Verdict</th><th>Field names (values not read)</th></tr></thead><tbody><tr><td><code>schools/main/public/parentMarks</code></td><td>200</td><td class="bad">READABLE WITHOUT AUTH</td><td>updatedAt</td></tr><tr><td><code>schools/main/public/studentPins</code></td><td>200</td><td class="bad">READABLE WITHOUT AUTH</td><td>updatedAt</td></tr><tr><td><code>schools/main/public/teacherDirectory</code></td><td>200</td><td class="bad">READABLE WITHOUT AUTH</td><td>updatedAt</td></tr><tr><td><code>schools/main/public/parentComm</code></td><td>200</td><td class="bad">READABLE WITHOUT AUTH</td><td>updatedAt</td></tr><tr><td><code>schools/main/app/state</code></td><td>403</td><td class="good">protected</td><td></td></tr><tr><td><code>schools/main/app/marks</code></td><td>403</td><td class="good">protected</td><td></td></tr><tr><td><code>appUsers</code></td><td>403</td><td class="good">protected</td><td></td></tr></tbody></table>
+</div>
+
+<div class="two">
+  <div class="panel">
+    <h2>Passed checks</h2>
+    <ul class="checks"><li>✅ Home page returned HTTP 200</li><li>✅ HTTPS is used for the final page</li><li>✅ HSTS is enabled (max-age=31556926)</li><li>✅ Response compression is enabled (gzip)</li><li>✅ TLS certificate is valid for 80 more days</li><li>✅ HTTP requests redirect to HTTPS</li><li>✅ Web app manifest is valid and its icons are reachable</li><li>✅ favicon is reachable</li><li>✅ Apple touch icon is reachable</li><li>✅ Page title is set: Scholars International School &amp; College — Accounts &amp; Class Test Marks</li><li>✅ Search-engine indexing is disabled (noindex)</li><li>✅ No additional same-origin HTML links were found to crawl</li><li>✅ Modal/dialog rendered (2 visible container(s))</li><li>✅ No console errors, page errors or failed requests were observed</li><li>✅ No horizontal overflow at 1440x900</li><li>✅ No horizontal overflow at 768x1024</li><li>✅ No horizontal overflow at 390x844</li><li>✅ All 8 checked links/assets responded successfully</li><li>✅ Firestore denied unauthenticated access to schools/main/app/state</li><li>✅ Firestore denied unauthenticated access to schools/main/app/marks</li><li>✅ Firestore denied unauthenticated access to appUsers</li></ul>
+  </div>
+  <div class="panel">
+    <h2>Audit warnings</h2>
+    <ul class="checks"><li>⚠️ Screenshot screenshot-desktop.png failed: Page.screenshot: Protocol error (Page.captureScreenshot): Unable to capture screenshot
+Call log:
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+</li></ul>
+  </div>
+</div>
+
+<footer>
+  Non-destructive QA/security audit. Not a replacement for a manual penetration test.
+  Findings are evidence-based but should be manually confirmed before remediation.
+</footer>
+</div>
+<script>
+(function(){
+  var buttons = document.querySelectorAll('#filters button');
+  var findings = document.querySelectorAll('#findings .finding');
+  buttons.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      buttons.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.getAttribute('data-filter');
+      findings.forEach(function(card){
+        card.style.display = (f === 'all' || card.getAttribute('data-severity') === f) ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

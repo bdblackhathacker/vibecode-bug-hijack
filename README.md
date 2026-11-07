@@ -4,7 +4,7 @@ A non-destructive Python audit for a live website. It connects from your own
 machine, loads the site in a real Chromium browser, and produces a report with
 evidence and fixes.
 
-Built for and first run against **https://siscdacc.web.app/**.
+Built for and first run against **demo-web.com/**.
 
 ## What it checks
 
@@ -43,7 +43,7 @@ python -m playwright install --with-deps chromium
 ## Run it against the site
 
 ```bash
-python site_audit.py https://siscdacc.web.app/
+python site_audit.py demo-web.com/
 ```
 
 Open the report:
@@ -57,7 +57,7 @@ start audit-report\report.html         # Windows
 Watch the browser run locally (useful for debugging):
 
 ```bash
-python site_audit.py https://siscdacc.web.app/ --headed
+python site_audit.py demo-web.com/ --headed
 ```
 
 Useful options:
@@ -80,7 +80,7 @@ The audit is read-only, but many bugs are only visible after login. Export an
 authenticated browser session once:
 
 ```bash
-python site_audit.py https://siscdacc.web.app/ --save-auth auth.json
+python site_audit.py demo-web.com/ --save-auth auth.json
 ```
 
 A Chromium window opens. Log in normally, wait for the dashboard, then press
@@ -90,7 +90,7 @@ Enter in the terminal. The session (cookies + localStorage) is saved to
 Then audit with that session:
 
 ```bash
-python site_audit.py https://siscdacc.web.app/ \
+python site_audit.py demo-web.com/ \
   --storage-state auth.json \
   --firebase-probe
 ```
@@ -99,7 +99,7 @@ python site_audit.py https://siscdacc.web.app/ \
 when finished. You can also pass a single cookie:
 
 ```bash
-python site_audit.py https://siscdacc.web.app/ --cookie "session=abc123"
+python site_audit.py demo-web.com/ --cookie "session=abc123"
 ```
 
 ## Firebase / Firestore probe warning
@@ -134,7 +134,7 @@ The console prints a score, severity counts, and the top findings. Exit code is
 `0` otherwise. This makes it usable in CI:
 
 ```bash
-python site_audit.py https://siscdacc.web.app/ \
+python site_audit.py https://demo.web.app/ \
   --no-browser --fail-on high --out audit-report
 ```
 

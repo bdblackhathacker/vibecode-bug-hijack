@@ -29,7 +29,7 @@ Quick start:
     . .venv/bin/activate
     pip install -r requirements.txt
     python -m playwright install chromium
-    python site_audit.py https://siscdacc.web.app/
+    python site_audit.py demo-web.com/
 
 Reports are written to ./audit-report/ as report.html, report.json and
 report.csv. Exit code is 1 when a finding at/above --fail-on is found.
@@ -76,10 +76,10 @@ except Exception:  # pragma: no cover - optional dependency
 
 
 VERSION = "1.1.0"
-DEFAULT_URL = "https://siscdacc.web.app/"
+DEFAULT_URL = "demo-web.com/"
 DEFAULT_UA = (
     f"SISCD-SiteAudit/{VERSION} "
-    "(authorized QA audit; non-destructive; +https://siscdacc.web.app/)"
+    "(authorized QA audit; non-destructive; +demo-web.com/)"
 )
 AXE_URL = "https://cdn.jsdelivr.net/npm/axe-core@4.10.2/axe.min.js"
 
@@ -3121,11 +3121,11 @@ def build_parser() -> argparse.ArgumentParser:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=(
             "Examples:\n"
-            "  python site_audit.py https://siscdacc.web.app/\n"
-            "  python site_audit.py https://siscdacc.web.app/ --headed --firebase-probe\n"
-            "  python site_audit.py https://siscdacc.web.app/ --no-browser --fail-on none\n"
-            "  python site_audit.py https://siscdacc.web.app/ --save-auth auth.json\n"
-            "  python site_audit.py https://siscdacc.web.app/ --storage-state auth.json\n"
+            "  python site_audit.py demo-web.com/\n"
+            "  python site_audit.py demo-web.com/ --headed --firebase-probe\n"
+            "  python site_audit.py demo-web.com/ --no-browser --fail-on none\n"
+            "  python site_audit.py demo-web.com/ --save-auth auth.json\n"
+            "  python site_audit.py demo-web.com/ --storage-state auth.json\n"
         ),
     )
     parser.add_argument("url", nargs="?", default=DEFAULT_URL, help=f"Target URL (default: {DEFAULT_URL})")
