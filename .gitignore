@@ -1,0 +1,6 @@
+.venv/
+.audit-cache/
+audit-report/
+__pycache__/
+*.pyc
+auth.json
